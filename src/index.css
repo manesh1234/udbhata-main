@@ -5,22 +5,52 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
-.bar{
+.bar {
     margin: 50px 30px 20px 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.stages{
+.stages {
     display: flex;
     align-items: center;
 }
 
-.stages > div{
+.stages>div {
     padding: 7px;
     border: 2px solid #e63946;
     cursor: pointer;
 }
 
+table {
+    width: 90%;
+    margin: 30px auto;
+    border: 2.5px solid rgba(206, 66, 87, 0.4);
+    text-align: center;
+}
 
+thead {
+    color: #06d6a0;
+    font-weight: bold;
+}
+
+tr, td {
+    border: 1.5px solid rgba(255, 0, 110, 0.4);
+    padding: 4px;
+}
+
+a {
+    display: block;
+}
+
+.newsData_img {
+    width: 30px;
+    height: 25px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    color: rgb(106, 193, 106);
+}

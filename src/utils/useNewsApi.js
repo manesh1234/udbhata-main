@@ -7,7 +7,7 @@ const body = {
     "articlesSortBy": "date",
     "articlesCount": 100,
     "articleBodyLen": -1,
-    "apiKey": "cccd0423-667f-4b6f-98d0-82d6d025ca49"
+    "apiKey": "d17cbef2-5e44-4f2f-bcc2-c52e2a156a5e"
 }
 
 const useNewsApi = () => {
@@ -35,7 +35,7 @@ const useNewsApi = () => {
                     "articlesCount": 100,
                     "articlesPage": i,
                     "articleBodyLen": -1,
-                    "apiKey": "cccd0423-667f-4b6f-98d0-82d6d025ca49"
+                    "apiKey": "d17cbef2-5e44-4f2f-bcc2-c52e2a156a5e"
                 })
             }))
         }
@@ -52,3 +52,4 @@ const useNewsApi = () => {
 }
 
 export default useNewsApi;
+
