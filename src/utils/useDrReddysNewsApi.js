@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const URL = 'https://www.newsapi.ai/api/v1/article/getArticles';
 const body = {
-    "query": "{\"$query\":{\"$and\":[{\"conceptUri\":\"http://en.wikipedia.org/wiki/Cipla\"},{\"lang\":\"eng\"}]},\"$filter\":{\"forceMaxDataTimeWindow\":\"31\"}}",
+    "query": "{\"$query\":{\"$and\":[{\"conceptUri\":\"http://en.wikipedia.org/wiki/Dr._Reddy's_Laboratories\"},{\"lang\":\"eng\"}]},\"$filter\":{\"forceMaxDataTimeWindow\":\"31\"}}",
     "resultType": "articles",
     "articlesSortBy": "date",
     "articlesCount": 100,
@@ -10,7 +10,7 @@ const body = {
     "apiKey": "d17cbef2-5e44-4f2f-bcc2-c52e2a156a5e"
 }
 
-const useNewsApi = () => {
+const useDrReddysNewsApi = () => {
     const [data, setData] = useState(null);
     const fetchData = async () => {
         const response = await fetch(URL, {
@@ -29,11 +29,11 @@ const useNewsApi = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "query": "{\"$query\":{\"$and\":[{\"conceptUri\":\"http://en.wikipedia.org/wiki/Cipla\"},{\"lang\":\"eng\"}]},\"$filter\":{\"forceMaxDataTimeWindow\":\"31\"}}",
+                    "articlesPage": i,
+                    "query": "{\"$query\":{\"$and\":[{\"conceptUri\":\"http://en.wikipedia.org/wiki/Dr._Reddy's_Laboratories\"},{\"lang\":\"eng\"}]},\"$filter\":{\"forceMaxDataTimeWindow\":\"31\"}}",
                     "resultType": "articles",
                     "articlesSortBy": "date",
                     "articlesCount": 100,
-                    "articlesPage": i,
                     "articleBodyLen": -1,
                     "apiKey": "d17cbef2-5e44-4f2f-bcc2-c52e2a156a5e"
                 })
@@ -51,5 +51,4 @@ const useNewsApi = () => {
     return data;
 }
 
-export default useNewsApi;
-
+export default useDrReddysNewsApi;

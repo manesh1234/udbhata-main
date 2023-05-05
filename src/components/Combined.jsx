@@ -1,18 +1,5 @@
 import { useState, useEffect } from "react";
 
-const removeTimeFromDate = date => date.split('T')[0];
-const notificationDateFilter = (inputDate) => {
-    const parts = inputDate.split(/[\s:-]/);
-    const dateObj = new Date(`${parts[1]} ${parts[0]}, ${parts[2]} ${parts[3]}:${parts[4]}:${parts[5]}`);
-    return dateObj.toLocaleDateString('en-CA');
-}
-const nextAndPrevDate = (inputDate, nextOrPrev) => {
-    const dateObj = new Date(inputDate);
-    const nextDateObj = new Date(dateObj.getTime() + 24 * 60 * 60 * 1000);
-    const prevDateObj = new Date(dateObj.getTime() - 24 * 60 * 60 * 1000);
-    return nextOrPrev === "next" ? nextDateObj.toISOString().slice(0, 10) : prevDateObj.toISOString().slice(0, 10);
-}
-
 const filterFunction = (marketData, newsData, notificationData) => {
     let obj = {};
     let tempArr = [];
@@ -86,57 +73,86 @@ const filterFunction = (marketData, newsData, notificationData) => {
     return Object.values(obj);
 }
 
-const Combined = ({ marketData, newsData, notificationData }) => {
-    const [finalData, setFinalData] = useState(null);
-    notificationData = notificationData?.map(notification => {
-        return {
-            ...notification,
-            date: notificationDateFilter(notification.an_dt),
-            prevDate: nextAndPrevDate(notificationDateFilter(notification.an_dt)),
-            nextDate: nextAndPrevDate(notificationDateFilter(notification.an_dt), "next")
-        }
-    })
-    marketData = marketData?.filter(item => ((item?.open - item?.close) / item?.open * 100) >= 3);
-    marketData = marketData?.map(item => {
-        return {
-            ...item,
-            date: removeTimeFromDate(item?.date),
-            drop: ((item?.open - item?.close) / item?.open * 100).toFixed(2)
-        }
-    })
-    console.log("Markerdata", marketData, notificationData)
-    console.log(newsData);
+const Combined = ({ marketData1, marketData2, newsData1, newsData2, notificationData1, notificationData2 }) => {
+    const [finalData1, setFinalData1] = useState(null);
+    const [finalData2, setFinalData2] = useState(null);
+    const [drop, setDrop] = useState('3');
+    
+    marketData1 = marketData1?.filter(item => ((item?.open - item?.close) / item?.open * 100) >= parseInt(drop));
+    marketData2 = marketData2?.filter(item => ((item?.open - item?.close) / item?.open * 100) >= parseInt(drop));
+
     useEffect(() => {
-        setFinalData(filterFunction(marketData, newsData, notificationData));
-    }, [])
-    console.log(finalData);
+        setFinalData1(filterFunction(marketData1, newsData1, notificationData1));
+        setFinalData2(filterFunction(marketData2, newsData2, notificationData2));
+    }, [drop])
+
     return (
-        <table>
-            <thead>
-                <tr>
-                    <td>OPEN</td>
-                    <td>CLOSE</td>
-                    <td>DATE</td>
-                    <td>DROP%</td>
-                    <td>News Links</td>
-                    <td>NSE Notification</td>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    finalData?.map((item, index) => {
-                        return <tr key={index}>
-                            <td>{item.open}</td>
-                            <td>{item.close}</td>
-                            <td>{item.date}</td>
-                            <td>{item.drop}</td>
-                            <td>{item.news_data.length === 0 ? "-------" : item.news_data.map((item, index) => <a target="__blank" rel="noreferrer" href={item.url} key={index}>LINK , sentiment : {item.sentiment}</a>)}</td>
-                            <td>{item.attachment.length === 0 ? "------" : item.attachment.map((item, index) => <a target="__blank" rel="noreferrer" href={item.attchmntFile} key={index}>{item.attchmntFile.substring(0, 15)}....</a>)}</td>
-                        </tr>
-                    })
-                }
-            </tbody>
-        </table>
+        <>
+            <div className="dropdown-div">
+                <select value={drop} onChange={(e) => {
+                    setDrop(e.target.value);
+                }} className="dropdown-btn">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <h1>For Cipla</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <td>OPEN</td>
+                        <td>CLOSE</td>
+                        <td>DATE</td>
+                        <td>DROP%</td>
+                        <td>News Links</td>
+                        <td>NSE Notification</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        finalData1?.map((item, index) => {
+                            return <tr key={index}>
+                                <td>{item.open}</td>
+                                <td>{item.close}</td>
+                                <td>{item.date}</td>
+                                <td>{item.drop}</td>
+                                <td>{item.news_data.length === 0 ? "-------" : item.news_data.map((item, index) => <a target="__blank" rel="noreferrer" href={item.url} key={index}>LINK , sentiment : {item.sentiment}</a>)}</td>
+                                <td>{item.attachment.length === 0 ? "------" : item.attachment.map((item, index) => <a target="__blank" rel="noreferrer" href={item.attchmntFile} key={index}>{item.attchmntFile.substring(0, 15)}....</a>)}</td>
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+            <h1>For DrReddy's</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <td>OPEN</td>
+                        <td>CLOSE</td>
+                        <td>DATE</td>
+                        <td>DROP%</td>
+                        <td>News Links</td>
+                        <td>NSE Notification</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        finalData2?.map((item, index) => {
+                            return <tr key={index}>
+                                <td>{item.open}</td>
+                                <td>{item.close}</td>
+                                <td>{item.date}</td>
+                                <td>{item.drop}</td>
+                                <td>{item.news_data.length === 0 ? "-------" : item.news_data.map((item, index) => <a target="__blank" rel="noreferrer" href={item.url} key={index}>LINK , sentiment : {item.sentiment}</a>)}</td>
+                                <td>{item.attachment.length === 0 ? "------" : item.attachment.map((item, index) => <a target="__blank" rel="noreferrer" href={item.attchmntFile} key={index}>{item.attchmntFile.substring(0, 15)}....</a>)}</td>
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+        </>
     )
 }
 

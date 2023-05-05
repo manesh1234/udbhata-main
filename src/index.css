@@ -54,3 +54,42 @@ img {
     height: 100%;
     color: rgb(106, 193, 106);
 }
+
+.dropdown-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    width: 125px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+    padding-right: 4px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #0070f3;
+    box-shadow: 0 0 0 2px #90cdf4;
+}
+
+option {
+    color: #333;
+    background-color: #fff;
+}
+
+option:hover,
+option:focus {
+    background-color: #0070f3;
+    color: #fff;
+}
+
+h1{
+    color: #118ab2;
+    text-align: center;
+}
