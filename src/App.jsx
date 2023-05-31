@@ -1,17 +1,17 @@
 import { useState } from "react";
 import useCiplaNewsApi from "./utils/useCiplaNewsApi";
 import useDrReddysNewsApi from "./utils/useDrReddysNewsApi";
-// import useMarketData from "./utils/useMarketData";
-// import useNotifications from "./utils/useNotifications";
+import useMarketData from "./utils/useMarketData";
+import useNotifications from "./utils/useNotifications";
 
 import Combined from "./components/Combined";
 import NewsData from "./components/NewsData";
 import Markerdata from "./components/MarketData";
 import NotificationData from "./components/NotificationData";
 
-import market1 from './utils/market1.json';
-import market2 from './utils/market2.json';
-import notificationData from './utils/notifications.json';
+// import market1 from './utils/market1.json';
+// import market2 from './utils/market2.json';
+// import notificationData from './utils/notifications.json';
 
 
 const removeTimeFromDate = date => date.split('T')[0];
@@ -48,11 +48,11 @@ const App = () => {
     const [stage, setStage] = useState(0);
     const newsData1 = useCiplaNewsApi();
     const newsData2 = useDrReddysNewsApi();
-    // let { marketData1, marketData2 } = useMarketData();
-    // const notificationData = useNotifications();
+    let { marketData1, marketData2 } = useMarketData();
+    const notificationData = useNotifications();
 
-    let marketData1 = market1.data;
-    let marketData2 = market2.data;
+    // let marketData1 = market1.data;
+    // let marketData2 = market2.data;
 
     let notificationData1 = notificationData?.filter(item => item?.symbol === 'CIPLA');
     let notificationData2 = notificationData?.filter(item => item?.symbol === 'DRREDDY');

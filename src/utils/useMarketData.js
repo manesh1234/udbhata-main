@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const API_KEY = 'd331602daa481af08223120ce6bb4bdd';
+const API_KEY = '08458a50b56cec860381f42c26d43125';
 const URL1 = `https://nseindia.onrender.com/api/eod?access_key=${API_KEY}&symbols=CIPLA.XNSE,CIPLA.XBOM`;
 const URL2 = `https://nseindia.onrender.com/api/eod?access_key=${API_KEY}&symbols=DRREDDY.XNSE,RDY`;
 
