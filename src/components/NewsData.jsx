@@ -4,7 +4,7 @@ import imgNotFound from '../imgNotFound.png';
 const NewsData = ({ newsData1, newsData2 }) => {
     const [renderingData, setRenderingData] = useState(newsData1);
     const [dropDown, setDropDown] = useState('1');
-
+ 
     return (
         <>
             <div className="dropdown-div">
@@ -29,7 +29,7 @@ const NewsData = ({ newsData1, newsData2 }) => {
                 <tbody>
                     {
                         renderingData?.map((item, index) => {
-                            return <tr key={index}>
+                            return item.sentiment<0 && <tr key={index}>
                                 <td>{item.date}</td>
                                 <td style={{ backgroundColor: item.sentiment < -0.5 ? "rgb(211, 137, 137)" : "rgb(106, 193, 106)" }}>{item.sentiment}</td>
                                 <td><div className="newsData_img"><img src={item.image} alt="NewsImage" onError={(e) => { e.target.onerror = null; e.target.src = { imgNotFound } }} /></div></td>
