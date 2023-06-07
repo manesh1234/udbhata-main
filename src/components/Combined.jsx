@@ -79,8 +79,8 @@ const Combined = ({ marketData1, marketData2, newsData1, newsData2, notification
     const [drop1, setDrop1] = useState('1');
     const [drop2, setDrop2] = useState('2');
 
-    marketData1 = marketData1?.filter(item => ((item?.open - item?.close) / item?.open * 100) >= parseInt(drop2));
-    marketData2 = marketData2?.filter(item => ((item?.open - item?.close) / item?.open * 100) >= parseInt(drop2));
+    marketData1 = marketData1?.filter(item => item.drop >= parseInt(drop2));
+    marketData2 = marketData2?.filter(item => item.drop >= parseInt(drop2));
 
     useEffect(() => {
         setFinalData1(filterFunction(marketData1, newsData1, notificationData1));

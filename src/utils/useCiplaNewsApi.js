@@ -7,7 +7,7 @@ const body = {
     "articlesSortBy": "date",
     "articlesCount": 100,
     "articleBodyLen": -1,
-    "apiKey": "d17cbef2-5e44-4f2f-bcc2-c52e2a156a5e"
+    "apiKey": "138ab06c-5efd-4a74-8880-dc99f5bbad20"
 }
 
 const useCiplaNewsApi = () => {
@@ -35,7 +35,7 @@ const useCiplaNewsApi = () => {
                     "articlesCount": 100,
                     "articlesPage": i,
                     "articleBodyLen": -1,
-                    "apiKey": "d17cbef2-5e44-4f2f-bcc2-c52e2a156a5e"
+                    "apiKey": "138ab06c-5efd-4a74-8880-dc99f5bbad20"
                 })
             }))
         }
