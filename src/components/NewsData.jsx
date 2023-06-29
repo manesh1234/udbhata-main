@@ -16,8 +16,7 @@ const NewsData = ({ newsData1, newsData2 }) => {
         setLoading(true);
         setSearchTxt(e.target.value);
         const timer = setTimeout(async () => {
-            const response = await fetch(`https://www.newsapi.ai/api/v1/suggestConceptsFast?
-            prefix=${e.target.value}&lang=eng&apiKey=${API_KEY}`);
+            const response = await fetch(`https://www.newsapi.ai/api/v1/suggestConceptsFast?prefix=${e.target.value}&lang=eng&apiKey=${API_KEY}`);
             const data = await response.json();
             setSuggestions(data);
             setLoading(false);
