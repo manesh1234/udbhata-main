@@ -16,7 +16,8 @@ const NewsData = ({ newsData1, newsData2 }) => {
         setLoading(true);
         setSearchTxt(e.target.value);
         const timer = setTimeout(async () => {
-            const response = await fetch(`https://www.newsapi.ai/api/v1/suggestConceptsFast?prefix=${e.target.value}&lang=eng&apiKey=${API_KEY}`);
+            const response = await fetch(`https://www.newsapi.ai/api/v1/suggestConceptsFast?
+            prefix=${e.target.value}&lang=eng&apiKey=${API_KEY}`);
             const data = await response.json();
             setSuggestions(data);
             setLoading(false);
@@ -130,7 +131,7 @@ const NewsData = ({ newsData1, newsData2 }) => {
                         renderingData?.map((item, index) => {
                             return item.sentiment < 0 && <tr key={index}>
                                 <td>{item.date}</td>
-                                <td style={{ backgroundColor: item.sentiment < -0.5 ? "rgb(211, 137, 137)" : "rgb(106, 193, 106)" }}>{item.sentiment}</td>
+                                <td style={{ backgroundColor: item.sentiment > -0.2 ? "rgb(211, 137, 137)" : "rgb(106, 193, 106)" }}>{item.sentiment}</td>
                                 <td><div className="newsData_img"><img src={item.image} alt="NewsImage" onError={(e) => { e.target.onerror = null; e.target.src = { imgNotFound } }} /></div></td>
                                 <td>{item.title}</td>
                                 <td><a target="__blank" rel="noreferrer" href={item.url}>{item.url.substring(0, 8)}......</a></td>
