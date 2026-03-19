@@ -103,7 +103,9 @@ const App = () => {
             let prevDate = null;
             let daysDiff = 0;
 
+            // eslint-disable-next-line no-loop-func
             while (!prevDate && daysDiff <= 10) {
+                // eslint-disable-next-line no-loop-func
                 prevDate = data.find(obj => obj?.date === tempDate);
                 const previousDate = getPreviousDate(tempDate);
                 tempDate = previousDate;
