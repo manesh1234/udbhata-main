@@ -98,15 +98,15 @@ const App = () => {
 
     const prevCloseHandler = (data) => {
         return data?.map(item => {
-            let currentDate = getPreviousDate(item?.date);
+            let tempDate = getPreviousDate(item?.date);
 
             let prevDate = null;
             let daysDiff = 0;
 
             while (!prevDate && daysDiff <= 10) {
-                prevDate = data.find(obj => obj?.date === currentDate);
-                const previousDate = getPreviousDate(currentDate);
-                currentDate = previousDate;
+                prevDate = data.find(obj => obj?.date === tempDate);
+                const previousDate = getPreviousDate(tempDate);
+                tempDate = previousDate;
                 daysDiff++;
             }
             const prevClose_Open_Drop = prevDate ? ((prevDate.close - item.open) / prevDate.close * 100).toFixed(2) : null;

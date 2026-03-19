@@ -85,7 +85,7 @@ const Combined = ({ marketData1, marketData2, newsData1, newsData2, notification
     useEffect(() => {
         setFinalData1(filterFunction(marketData1, newsData1, notificationData1));
         setFinalData2(filterFunction(marketData2, newsData2, notificationData2));
-    }, [drop2])
+    }, [marketData1, marketData2, newsData1, newsData2, notificationData1, notificationData2, drop2])
 
     return (
         <>
